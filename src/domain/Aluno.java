@@ -17,9 +17,10 @@ public class Aluno extends Matricula{
     private List<Bolsista> bolsista;
     private Historico historico;
 
-    public Aluno(Date dataMat, String nome, String cpf, String email, String senha, String rg, SexoEnum sexo,
-            java.sql.Date dataNasc) {
-        super(dataMat);
+
+    public Aluno(Date dataMat2, String nome, String cpf, String email, String senha, String rg, SexoEnum sexo,
+            java.sql.Date dataNasc, Historico historico) {
+        super(dataMat2);
         Nome = nome;
         this.cpf = cpf;
         Email = email;
@@ -27,8 +28,8 @@ public class Aluno extends Matricula{
         this.rg = rg;
         this.sexo = sexo;
         DataNasc = dataNasc;
+        this.historico = historico;
     }
-
     public Integer getCódigo() {
         return Código;
     }
@@ -68,8 +69,8 @@ public class Aluno extends Matricula{
     public SexoEnum getSexo() {
         return sexo;
     }
-    public void setSexo(SexoEnum sexo) {
-        this.sexo = sexo;
+    public void setSexo(SexoEnum string) {
+        this.sexo = string;
     }
     public java.sql.Date getDataNasc() {
         return DataNasc;
@@ -90,8 +91,8 @@ public class Aluno extends Matricula{
         return bolsista;
     }
 
-    public void setBolsista(List<Bolsista> bolsista) {
-        this.bolsista = bolsista;
+    public void setBolsista(List<Bolsista> string) {
+        this.bolsista = string;
     }
 
     public Historico getHistorico() {
@@ -100,6 +101,21 @@ public class Aluno extends Matricula{
 
     public void setHistorico(Historico historico) {
         this.historico = historico;
+    }
+
+    public void setBolsista(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setBolsista'");
+    }
+
+    public void setHistorico(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setHistorico'");
+    }
+
+    public void setCurso(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setCurso'");
     }
 
     

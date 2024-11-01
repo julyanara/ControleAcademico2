@@ -18,7 +18,7 @@ public class Matricula {
     public void setCodigo(Integer codigo) {
         Codigo = codigo;
     }
-    public java.sql.Date getDataMat() {
+    public Date getDataMat() {
         return DataMat;
     }
     public void setDataMat(Date dataMat) {
