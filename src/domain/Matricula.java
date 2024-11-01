@@ -8,8 +8,8 @@ public class Matricula {
     protected Date DataMat;
 
     
-    public Matricula(Date dataMat) {
-        DataMat = dataMat;
+    public Matricula(Date dataMat2) {
+        DataMat = dataMat2;
     }
 
     public Integer getCodigo() {

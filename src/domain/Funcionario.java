@@ -26,8 +26,8 @@ public class Funcionario {
     public Integer getCódigo() {
         return Código;
     }
-    public void setCódigo(Integer código) {
-        Código = código;
+    public void setCódigo(long l) {
+        Código = getCódigo();
     }
     public String getNome() {
         return Nome;

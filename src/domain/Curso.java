@@ -56,6 +56,10 @@ public Curso(Integer código, String nome, String cargaHorária) {
 public String toString() {
     return "Curso [Código=" + Código + ", Nome=" + Nome + ", CargaHorária=" + CargaHorária + "]";
 }
+public int getId() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getId'");
+}
 
 
 }

@@ -12,13 +12,13 @@ public class Aluno extends Matricula{
     private String Senha;
     private String rg;
     private SexoEnum sexo;
-    private Date DataNasc;
+    private java.sql.Date DataNasc;
     private List<Curso> curso;
     private List<Bolsista> bolsista;
     private Historico historico;
 
     public Aluno(Date dataMat, String nome, String cpf, String email, String senha, String rg, SexoEnum sexo,
-            Date dataNasc) {
+            java.sql.Date dataNasc) {
         super(dataMat);
         Nome = nome;
         this.cpf = cpf;
@@ -71,10 +71,10 @@ public class Aluno extends Matricula{
     public void setSexo(SexoEnum sexo) {
         this.sexo = sexo;
     }
-    public Date getDataNasc() {
+    public java.sql.Date getDataNasc() {
         return DataNasc;
     }
-    public void setDataNasc(Date dataNasc) {
+    public void setDataNasc(java.sql.Date dataNasc) {
         DataNasc = dataNasc;
     }
 

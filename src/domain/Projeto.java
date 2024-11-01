@@ -2,7 +2,6 @@ package domain;
 
 import java.util.List;
 
-
 public class Projeto {
 
 
@@ -13,7 +12,7 @@ public class Projeto {
     private Float ValorBolsa;
     private List<Bolsista> bolsistas;
     private Professor professores;
-   
+
     public Projeto(String descrição, String título, String cargaHorária, Float valorBolsa) {
         Descrição = descrição;
         Título = título;
@@ -68,6 +67,10 @@ public class Projeto {
     }
     public void setProfessores(Professor professores) {
         this.professores = professores;
+    }
+    public int getId() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getId'");
     }
 
 }

@@ -1,15 +1,20 @@
-package domain;
+package dao;
 
 import java.util.List;
 
-public class Professor extends Funcionario{
+import domain.Disciplina;
+import domain.Funcionario;
+import domain.Projeto;
+import domain.SexoEnum;
+
+public class ProfessorDao extends Funcionario{
 
     protected Float Salario;
     private List<Projeto> projeto;
     private List<Disciplina> disciplina;
 
 
-    public Professor(String nome, String email, String senha, SexoEnum sexo, String área, Float salario) {
+    public ProfessorDao(String nome, String email, String senha, SexoEnum sexo, String área, Float salario) {
         super(nome, email, senha, sexo, área);
         Salario = salario;
     }

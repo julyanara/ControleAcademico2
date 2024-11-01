@@ -1,6 +1,6 @@
 package domain;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Turma extends Matricula {
@@ -12,8 +12,8 @@ public class Turma extends Matricula {
     private List<Disciplina> disciplina;
     private Curso curso;
     
-    public Turma(Date dataMat, String nome, String situação, String cargaHorária) {
-        super(dataMat);
+    public Turma(LocalDate localDate, String nome, String situação, String cargaHorária) {
+        super(localDate);
         Nome = nome;
         Situação = situação;
         CargaHorária = cargaHorária;
