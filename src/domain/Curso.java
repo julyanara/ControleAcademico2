@@ -9,7 +9,7 @@ public class Curso {
     private String CargaHorária;
     private List <Turma> turma;
     private List<Aluno> aluno;
-   
+    
     public Curso(String nome, String cargaHorária) {
         Nome = nome;
         CargaHorária = cargaHorária;
