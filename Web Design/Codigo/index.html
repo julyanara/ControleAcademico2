@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto Ametista Duarte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
+    <style>
+        
+
+        body {
+            background-image: url('fundo.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; 
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #0d3e70;
+            padding: 30px 20px;
+            font-size: 25px;
+            color: #f2f2f2;
+            position: relative;
+            z-index: 100;
+            width: 100%;
+        }
+
+        .navbar img {
+            height: 40px;
+        }
+
+        .navbar-title {
+            text-align: center;
+            position: absolute; 
+            left: 50%; 
+            transform: translateX(-50%); 
+        }
+        .submenu {
+            display: flex;
+            justify-content: center;
+            background-color: white;
+            padding: 10px 0;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .submenu a {
+            text-decoration: none;
+            color: #0d3e70;
+            font-size: 18px;
+            margin: 0 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .submenu a:hover {
+            color: #004080;
+        }
+
+        #myVideo {
+            margin-top: 10px;
+            position: flex;
+            right: 0;
+            bottom: 0;
+            min-height: 72%;
+            min-width: 100%;
+        }
+
+        .center-content {
+            text-align: center;
+            margin-top: 50px;
+            position: relative;
+            width: 100%;
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 1280px;
+            height: 350px;
+            margin: auto;
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 1.0s ease-in-out;
+        }
+
+        .carousel-images img {
+            width: 100%;
+            max-width: 1280px;
+            height: 350px;
+            flex-shrink: 0;
+        }
+
+        .carousel-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .carousel-buttons button {
+            width: 8px;
+            height: 8px;
+            margin: 15px 2px;
+            background-color: #002f60;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .carousel-buttons button.active {
+            background-color: #004080;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 100px;
+            background-color: #002f60;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background-color: #004080;
+        }
+
+        .section {
+            width: 100%;
+            padding: 35px 10px;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #0d3e70;
+        }
+
+        .section p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 20px auto;
+        }
+
+        .programs, .testimonials {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .programs div, .testimonials div {
+            flex: 1;
+            min-width: 280px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .programs h3, .testimonials h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #0d3e70;
+        }
+
+        .testimonial {
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .programs, .testimonials {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        footer {
+            position: relative;
+            background-color: #0d3e70;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer .footer-logo {
+            margin-top: 20px;
+        }
+
+        footer .footer-logo img {
+            max-width: 150px;
+        }
+
+        footer .footer-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+            text-align: left;
+        }
+
+        footer .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        footer .footer-column h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            color: white;
+        }
+
+        footer .footer-column p {
+            font-size: 1em;
+            line-height: 1.6;
+            margin: 5px 0;
+        }
+
+        footer .footer-column a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        footer .footer-column a:hover {
+            color: #ffcc00;
+        }
+
+        footer .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 15px 0;
+            font-size: 0.9em;
+        }
+ 
+
+        .history-content {
+            margin-top: 20px;
+        }
+
+        .history-text-box {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .history-text-box p {
+            margin-bottom: 20px;
+        }
+
+        .history-images {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .history-images img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 0px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+        scroll-behavior: smooth;
+    }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html">
+            <img src="logo.png" alt="Logo">
+        </a>
+        <h1 class="navbar-title">INSTITUTO AMETISTA DUARTE</h1>
+    </nav>
+
+    <div class="submenu">
+        <a href="#educacao">O que o Instituto oferece</a>
+        <a href="#historia">História do Instituto</a>
+        <a href="#depoimentos">Opiniões dos nossos alunos</a>
+    </div>
+
+    <video autoplay muted loop id="myVideo">
+        <source src="criancas2.mp4" type="video/mp4">
+    </video>
+
+    <div>
+        <a href="login.html" class="button">ENTRAR</a>
+    </div>
+
+    <div class="center-content" id="educacao">
+        <div class="carousel">
+            <div class="carousel-images">
+                <img src="bolsa.png" alt="Bolsa">
+                <img src="crianca.png" alt="Criança">
+                <img src="visita.png" alt="Visita">
+            </div>
+        </div>
+        <div class="carousel-buttons">
+            <button class="active"></button>
+            <button></button>
+            <button></button>
+        </div>
+
+        <div class="section" id = "historia">
+            <h2>Educação Infantil, Ensino Médio, Ensino Superior e Programa Bilíngue</h2>
+            <div class="programs">
+                <div>
+                    <h3>Educação Infantil</h3>
+                    <p>Nosso Colégio oferece uma base sólida desde a Educação Infantil, preparando os alunos para o desenvolvimento integral e social.</p>
+                </div>
+                <div>
+                    <h3>Ensino Médio</h3>
+                    <p>Formação acadêmica de excelência para preparar os jovens para os desafios do vestibular e para o mercado de trabalho.</p>
+                </div>
+                <div>
+                    <h3>Ensino Superior</h3>
+                    <p>Com uma parceria com as melhores universidades, oferecemos uma formação superior que prepara para as mais diversas áreas do conhecimento.</p>
+                </div>
+                <div>
+                    <h3>Programa Bilíngue</h3>
+                    <p>Um programa inovador, onde as crianças aprendem em um ambiente bilíngue, desenvolvendo habilidades para o mundo globalizado.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+        <h2>A História do Colégio Ametista Duarte</h2>
+        <div class="history-content">
+            <div class="history-text-box">
+                <div class="history-text">
+                    <p>O Colégio Ametista Duarte foi fundado em 1990 com o objetivo de proporcionar uma educação de excelência, preparando os alunos para os desafios do futuro. Desde então, buscamos uma metodologia inovadora que une tradição e modernidade, com um compromisso firme em formar cidadãos críticos e responsáveis.</p>
+                    <p>Com o passar dos anos, a instituição se expandiu e se consolidou como referência em educação, oferecendo programas completos desde a Educação Infantil até o Ensino Superior. Nossa missão é fomentar o aprendizado integral dos alunos, promovendo não só o desenvolvimento acadêmico, mas também valores como ética, solidariedade e respeito ao próximo.</p>
+                    <p>Com uma infraestrutura moderna e corpo docente altamente qualificado, o Colégio Ametista Duarte continua a inovar em suas práticas pedagógicas, preparando os alunos para os mais diversos desafios do mercado de trabalho e da vida acadêmica.</p>
+                </div>
+            </div>
+            <div class="history-images">
+                <img src="universidade1.jpg" alt="Universidade Exemplo 1">
+                <img src="universidade2.jpg" alt="Universidade Exemplo 2">
+                <img src="universidade3.jpg" alt="Universidade Exemplo 3">
+            </div>
+        </div>
+    </div>
+
+        <div class="section" id="depoimentos">
+            <h2>O que dizem nossos alunos</h2>
+            <div class="testimonials">
+                <div>
+                    <h3>João Silva</h3>
+                    <p class="testimonial">"O Colégio Ametista Duarte me preparou de forma incrível para a vida acadêmica e profissional. A educação de qualidade e o apoio dos professores foram fundamentais!"</p>
+                    <p class="testimonial-author">João Silva, Aluno do Ensino Médio</p>
+                </div>
+                <div>
+                    <h3>Maria Oliveira</h3>
+                    <p class="testimonial">"O Programa Bilíngue foi um diferencial incrível para o meu desenvolvimento. A aprendizagem de dois idiomas me abriu portas para o mundo!"</p>
+                    <p class="testimonial-author">Maria Oliveira, Aluna da Educação Infantil</p>
+                </div>
+                <div>
+                    <h3>Lucas Costa</h3>
+                    <p class="testimonial">"O Colégio tem uma estrutura incrível, e os professores são extremamente qualificados. Me sinto preparado para o vestibular e os desafios da vida!"</p>
+                    <p class="testimonial-author">Lucas Costa, Ex-Aluno do Ensino Médio</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Sobre o Colégio</h3>
+                <p>Nosso Colégio é referência em educação, oferecendo um ensino de qualidade desde a Educação Infantil até o Ensino Superior.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Contato</h3>
+                <p>Endereço: Av. dos Vinhedos, 71 - Jardim Sul, Uberlândia</p>
+                <p>Email: contato@escola.com.br</p>
+                <p>Telefone: (11) 1234-5678</p>
+            </div>
+            <div class="footer-column">
+                <h3>Redes Sociais</h3>
+                <p><a href="https://facebook.com">Facebook</a></p>
+                <p><a href="https://instagram.com">Instagram</a></p>
+                <p><a href="https://twitter.com">Twitter</a></p>
+            </div>
+        </div>
+        <div class="footer-logo">
+            <img src="logo.png" alt="Logo do Colégio">
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Colégio Ametista Duarte. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        const carouselImages = document.querySelector('.carousel-images');
+        const buttons = document.querySelectorAll('.carousel-buttons button');
+        let currentIndex = 0;
+
+        function changeImage(index) {
+            const offset = -index * 100;
+            carouselImages.style.transform = `translateX(${offset}%)`;
+            buttons.forEach((btn, i) => {
+                if (i === index) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        buttons.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                currentIndex = index;
+                changeImage(currentIndex);
+            });
+        });
+
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % buttons.length;
+            changeImage(currentIndex);
+        }, 7000); 
+    </script>
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
+    <title>Portal do Aluno - Projeto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url('fundo.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .bobo{
+            background-color: #003366; 
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+       
+        .botoes {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .botoes a {
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #0d3e70;
+            color: #f2f2f2;
+            border-radius: 8px;
+            margin-right: 4%;
+            font-weight: bold;
+        }
+
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            width: 60%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            margin-top: auto;
+            margin-bottom: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            margin-bottom: 3%;
+            text-align: center;
+            font-weight: bold;
+            color: #003366; 
+            font-size: 200%;
+            margin-top: 2%;
+        }
+
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 2px solid #b9cdd7;
+            background-color: #b9cdd7;
+            color: #000000;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        select {
+            height: 50px;
+        }
+
+        .campo2 {
+            display: flex;
+            gap: 10px;
+        }
+
+        .campo2 textarea {
+            flex: 1;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 80px;
+            background-color: transparent;
+            color: #0d3e70;
+            border: 2px solid #0d3e70;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+            margin-top: 2%;
+        }
+
+        .button:hover {
+            background-color: #004080;
+            color: white;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            background-color: #0d3e70;
+            font-size: 25px;
+            color: #f2f2f2;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            z-index: 90;
+        }
+
+        .navbar img {
+            height: 40px;
+            margin-left: 20px;
+            margin-right: 0;
+        }
+
+        .navbar-title {
+            color: #f2f2f2;
+            flex-grow: 1;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 38px;
+            margin-top: 42px;
+            margin-left: 1px;
+            margin-right: 32px;
+            margin-bottom: 2%;
+        }
+
+        button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 25px;
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 101;
+        }
+
+        .logout-btn img {
+            width: 100%;
+            height: auto;
+        }
+
+        .nav-list {
+            border-radius: 8px 8px 8px 8px;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: auto;
+            background: #dedfe0; /* Cor cinza claro */
+            transform: translateX(100%); /* Inicialmente esconde o menu */
+            transition: transform 0.5s ease;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            pointer-events: none;
+            list-style: none; /* Remove os pontos */
+            text-align: center; /* Centraliza o conteúdo */
+            padding: 10px;
+        }
+
+        .nav-list li:hover { /* quando passar o mouse */
+            background-color: #003366; 
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            
+        }
+
+        .nav-list a {
+            text-decoration: none; /* Remove o sublinhado */
+            color: #fff; /* Cor escura para o texto */
+            font-size: 24px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            padding: 10px;
+            
+        }
+
+        .nav-active .nav-list {
+            transform: translateX(0); /* Mostra o menu */
+            pointer-events: all;
+        }
+
+
+        .nav-active .nav-list a {
+            opacity: 1; /* Mostra os links */
+        }
+
+        .nav-active .nav-list li {
+            animation: fadeIn 0.5s forwards;
+            padding: 10px;
+        }
+
+        .nav-active .nav-list li:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .nav-active .nav-list li:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .nav-active .nav-list li:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Estilos para o botão de hambúrguer */
+        .logomenu {
+            border: none;
+            background: none;
+            border-top: 3px solid #fff;
+            cursor: pointer;
+            z-index: 1;
+            position: relative;
+            margin-right: 50px;
+        }
+
+        .logomenu::before,
+        .logomenu::after {
+            content: " ";
+            display: block;
+            width: 30px;
+            height: 3px;
+            background: #fff;
+            margin-top: 5px;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-active .logomenu {
+            position: fixed;
+            top: 26px;
+            right: 1px;
+            border-top-color: transparent;
+        }
+
+        .nav-active .logomenu::before {
+            transform: rotate(135deg);
+        }
+
+        .nav-active .logomenu::after {
+            transform: rotate(-135deg);
+            top: -7px;
+        }
+
+        .sair{
+            background-color: #003366; 
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="index.html">
+            <img src="logo.png" alt="Logo">
+        </a>
+        
+        <h1 class="navbar-title">PORTAL DO ALUNO</h1>
+        
+        <button class="logomenu"></button>
+        <ul class="nav-list">
+            <br><br>
+            <li><a href="historico.html">Histórico</a></li><br>
+            <li><a href="notasaluno.html">Notas</a></li><br>
+            <li class="sair"><a href="aluno.html" id="logout">Sair</a></li>
+        </ul>
+    </nav>
+
+    <form>
+        <h1>INSCRIÇÃO DE PROJETO</h1>
+
+        <div>
+            <select id="materias" name="materia" placeholder="Selecione o projeto">
+                <option value="selecione">Selecione</option>
+                <option value="portugues">Sim, Elas Podem!</option>
+                <option value="matematica">Literatura Contemporanea</option>
+                <option value="historia">Treinamento OBI</option>
+                <option value="geografia">Laboratorio de Geografia</option>
+                <option value="biologia">BioCerrado</option>
+            </select>
+        </div>
+
+        <div>
+            <textarea class="textarea3" placeholder="Nome Completo" maxlength="50" id="Nome"></textarea>
+        </div>
+
+        <div class="campo2">
+            <textarea class="textarea3" placeholder="CPF" maxlength="50" id="Cpf"></textarea>
+            <textarea class="textarea3" placeholder="Valor da Bolsa" maxlength="50" id="Bolsa"></textarea>
+        </div>
+
+        <div>
+            <button type="submit" class="button" id="cadastar">CADASTRAR</button>
+        </div>
+    </form>
+
+    <script>
+         const logomenu = document.querySelector(".logomenu");
+        const nav = document.querySelector("nav");
+
+        logomenu.addEventListener("click", () => {
+            nav.classList.toggle("nav-active");
+        });
+
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('nav-active');
+        }
+
+        function toggleOptions(button) {
+            const options = button.nextElementSibling;
+            options.style.display = options.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function deleteStudent(button) {
+            const row = button.closest('tr');
+            row.remove();
+        }
+
+        function editStudent(button) {
+            const row = button.closest('tr');
+            const nameButton = row.querySelector('.name-button');
+            const currentName = nameButton.textContent;
+            const newName = prompt('Edite o nome do aluno:', currentName);
+            if (newName) {
+                nameButton.textContent = newName;
+            }
+        }
+                // Captura o botão de logout
+        const sair = document.getElementById('logout');
+
+        // Adiciona o evento de clique ao botão de logout
+        sair.addEventListener('click', function(event) {
+            event.preventDefault(); // Previne o redirecionamento imediato
+            const confirmExit = confirm('Logout com sucesso!'); // Exibe a mensagem de confirmação
+            if (confirmExit) {
+                window.location.href = 'aluno.html'; 
+            }
+        });
+
+        const cadastrar = document.getElementById('cadastar');
+
+cadastrar.addEventListener('click', function(event) {
+    event.preventDefault(); // Previne o comportamento padrão de submit do formulário
+
+    // Chama a função de validação
+    if (validarCampos()) {
+        alert('Cadastro realizado com sucesso!'); // Mostra uma mensagem de sucesso
+        // Aqui, se você tiver um backend, pode fazer o envio do formulário ou algum outro processo
+    }
+});
+
+
+    function validarCampos() {
+    var nome = document.getElementById("Nome").value;
+    var cpf = document.getElementById("Cpf").value; // Apenas CPF
+    var bolsa = document.getElementById("Bolsa").value; // Apenas Bolsa
+    
+    // Verificar se o nome contém apenas letras
+    var nomeRegex = /^[A-Za-zÀ-ÿ\s]+$/;
+    if (!nomeRegex.test(nome)) {
+        alert("O nome deve conter apenas letras.");
+        return false;
+    }
+
+    // Verificação de CPF: deve conter apenas números e ter 11 caracteres
+    var cpfRegex = /^\d{11}$/;
+    if (!cpfRegex.test(cpf)) {
+        alert("O CPF deve conter apenas 11 números.");
+        return false;
+    }
+
+    // Verificação da bolsa: deve conter apenas números
+    var bolsaRegex = /^\d+$/;
+    if (!bolsaRegex.test(bolsa)) {
+        alert("A bolsa deve conter apenas números.");
+        return false;
+    }
+
+    return true; // Se todas as validações passarem, retorna true
+}
+
+
+    </script>
+</body>
+
+</html>

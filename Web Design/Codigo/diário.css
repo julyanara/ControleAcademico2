@@ -1,0 +1,434 @@
+
+            
+    * {
+        margin: 0;
+        padding: 0s;
+        box-sizing: border-box;
+    }
+        body {
+          background-image: url('fundo.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            background-color: #0d3e70;
+            font-size: 25px;
+            color: #f2f2f2;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            z-index: 90;
+            height: 125px;
+        }
+
+        .navbar img {
+            height: 40px;
+            margin-left: 20px;
+            margin-right: 0;
+            margin-bottom: 0px;
+        }
+
+        .navbar-title {
+            flex-grow: 1;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 38px;
+            margin-top: 0px;
+            margin-left: 0px;
+            margin-right: 43px;
+            margin-bottom: 8px;
+        }
+
+        button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 25px;
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 101;
+        }
+
+        .logout-btn img {
+            width: 100%;
+            height: auto;
+        }
+
+        .nav-list {
+            border-radius: 8px 8px 8px 8px;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: auto;
+            background: #dedfe0; /* Cor cinza claro */
+            transform: translateX(100%); /* Inicialmente esconde o menu */
+            transition: transform 0.5s ease;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            pointer-events: none;
+            list-style: none; /* Remove os pontos */
+            text-align: center; /* Centraliza o conteúdo */
+            padding: 10px;
+        }
+
+        .nav-list li:hover { /* quando passar o mouse */
+            background-color: #003366; 
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            
+        }
+
+        .nav-list a {
+            text-decoration: none; /* Remove o sublinhado */
+            color: #fff; /* Cor escura para o texto */
+            font-size: 24px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            padding: 10px;
+            
+        }
+
+        .nav-active .nav-list {
+            transform: translateX(0); /* Mostra o menu */
+            pointer-events: all;
+        }
+
+
+        .nav-active .nav-list a {
+            opacity: 1; /* Mostra os links */
+        }
+
+        .nav-active .nav-list li {
+            animation: fadeIn 0.5s forwards;
+            padding: 10px;
+        }
+
+        .nav-active .nav-list li:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .nav-active .nav-list li:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .nav-active .nav-list li:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        
+        .logomenu {
+            border: none;
+            background: none;
+            border-top: 3px solid #fff;
+            cursor: pointer;
+            z-index: 1;
+            position: relative;
+            margin-right: 50px;
+        }
+
+        .logomenu::before,
+        .logomenu::after {
+            content: " ";
+            display: block;
+            width: 30px;
+            height: 3px;
+            background: #fff;
+            margin-top: 5px;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-active .logomenu {
+            position: fixed;
+            top: 26px;
+            right: 1px;
+            border-top-color: transparent;
+        }
+
+        .nav-active .logomenu::before {
+            transform: rotate(135deg);
+        }
+
+        .nav-active .logomenu::after {
+            transform: rotate(-135deg);
+            top: -7px;
+        }
+
+        .sair{
+            background-color: #003366; 
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+            h2 {
+                margin-bottom: 20px;
+                text-align: center;
+                color: #011f3d;
+                font-size: 30px;
+                font-weight: 750;
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 2%;
+        
+            }
+
+            .tabela-notas {
+                border-collapse: collapse;
+                font-family: 'Poppins', sans-serif;
+                background-color: #b9cdd7;
+                color: #011f3d;
+                width: 60%; /* Ajuste a largura da tabela */
+                margin: auto; /* Centraliza horizontalmente */
+                border-color: #011f3d;
+                margin-top: 20px;
+            }
+            
+            .tabela-notas thead {
+                background-color: #e2e8f0;
+                padding: 10%;
+            }
+            
+            .tabela-notas th, td {
+                border-color: #cbd5e1;
+                padding: 10px;
+                text-align: center;
+            }
+            
+            .tabela-notas th {
+                font-weight: bold;
+            }
+            
+            .tabela-notas td:first-child {
+                text-align: left;
+            }
+
+              /* Container para a tabela de frequência, centralizando ela no topo */
+            #conteudo-frequencia {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-top: auto;
+                margin-bottom: 40vh; /* Espaço do topo */
+                
+            }
+            
+            /* Tabela centralizada com borda e estilo */
+            .tabela-frequencia {
+                border-collapse: collapse;
+                font-family: 'Poppins', sans-serif;
+                background-color: #b9cdd7;
+                color: #011f3d;
+                max-width: 80%; /* Ajuste a largura da tabela */
+                overflow: auto;
+                margin: auto; /* Centraliza horizontalmente */
+            }
+
+            .tabela-frequencia th, .tabela-frequencia td {
+                padding: 5px; /* Reduz o espaçamento interno das células */
+                width: 30px; /* Largura padrão das colunas */
+            }
+            
+            .tabela-frequencia td:first-child, .tabela-frequencia th:first-child {
+                width: 300px; /* Dá mais espaço para a coluna de nomes */
+            }
+                        
+            .tabela-frequencia thead {
+                background-color: #e2e8f0;
+                padding: 10%;
+            }
+            
+            .tabela-frequencia th, td {
+                border: 1px solid #cbd5e1;
+                padding: 10px;
+                text-align: center;
+            }
+            
+            .tabela-frequencia th{
+                font-weight: bold;
+
+            }
+
+            .tabela-frequencia td:nth-child(1) {
+                text-align: center;
+                font-size: 0.9em;
+            }
+
+            
+            .button-cadastro {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: transparent;
+                color: #0d3e70;
+                border: 2px solid #0d3e70;
+                text-decoration: none;
+                border-radius: 8px;
+                font-weight: 700;
+                font-size: 0.9em;
+                transition: background-color 0.3s ease;
+                margin-top: 2%;
+                text-align: center; 
+            } 
+          
+
+            .button-cadastro:hover {
+                background-color: #004080;
+                color: white;
+            }
+
+
+            .select-container {
+                display: flex;
+                justify-content: center; 
+                align-items: center; 
+                gap: 2%; 
+                flex-wrap: wrap; 
+                width: 95%; 
+                text-align: center; 
+            }
+
+            .selects {
+                text-align: center; 
+                padding: 10px 20px; 
+                width: 15%;
+                border-radius: 8px; 
+                border: 1px solid; 
+                background-color: #b9cdd7; 
+                border-color: #b9cdd7; 
+                color: #011f3d;
+            }
+
+            .nav-list li:hover {
+                background-color: #003366; 
+                padding: 2%;
+                border-radius: 8px;
+            }
+
+            .input{
+                background-color: #b9cdd7; 
+                border-color: #b9cdd7; 
+            }
+            .tabela-notas input {
+                background-color: #b9cdd7; 
+                border: 1px solid #b9cdd7; 
+                text-align: center;
+                padding: 5px; 
+                border-radius: 5px; 
+                width: 90%; 
+            }
+
+            .button-2 {
+                display: inline-block;
+                padding: 10px 40px; 
+                background-color: transparent;
+                color: #0d3e70;
+                border: 2px solid #0d3e70;
+                text-decoration: none;
+                border-radius: 50px;
+                font-weight: 700;
+                font-size: 1.0em; 
+                transition: background-color 0.3s ease;
+                margin-top: 0;
+                text-align: center;  
+                gap: 70px; 
+                margin-top: 20px; 
+            }
+            
+            .button-2:hover {
+                background-color: #004080;
+                color: white;
+            }
+        
+            .button-2-container {
+                display: flex;
+                justify-content: center; /* Centraliza os botões horizontalmente */
+                align-items: center; /* Centraliza os botões verticalmente */
+                gap: 20px; /* Espaço entre os botões */
+                margin-bottom: 20px; /* Espaço extra abaixo */
+                width: 100%; /* Garante que o contêiner ocupe todo o espaço horizontal */
+            }
+            
+
+            .button-3 { 
+                display: inline-block;
+                background-color: #9abdd4;
+                color: #0d3e70;
+                border-radius: 5px;
+                border: 2px solid #0d3e70; /* Certifique-se de que há apenas uma borda definida */
+                font-weight: 800;
+                font-size: 0.9em; 
+                text-align: center;
+                padding: 10px 20px; /* Adicione um preenchimento consistente */
+                margin-top: 20px;
+                margin-bottom: 2%;
+                align-items: center;
+                justify-content: center;
+            }
+
+            #button-meses-container {
+                display: flex;
+                justify-content: center; /* Centraliza os botões horizontalmente */
+                align-items: center;     /* Centraliza os botões verticalmente */
+                gap: 15px;               /* Espaçamento entre os botões */
+                flex-wrap: wrap;         /* Permite que os botões se movam para a linha seguinte se necessário */
+                margin-top: 20px;        /* Espaço acima do contêiner */
+            }
+            
+            /* Estilos para os botões de meses */
+            #button-meses {
+                background-color: transparent;
+                color: #0d3e70;
+                border: 2px solid #0d3e70;
+                padding: 10px 20px;
+                border-radius: 8px;
+                font-weight: 700;
+                font-size: 1.1em;
+                transition: background-color 0.3s ease;
+                cursor: pointer;
+            }
+            
+            #button-meses:hover {
+                background-color: #004080;
+                color: white;
+            }
+            /* Adicionando um deslocamento para a tabela de notas *
+            
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+
+            

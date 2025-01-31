@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Aluno</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url('fundosec.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        h1 {
+            margin-bottom: 2%;
+            text-align: center;
+            color: #f2f2f2;
+            font-size: 180%;
+            margin-top: 5%;
+        }
+
+        h2 {
+            margin-bottom: 2%;
+            text-align: center;
+            color: #011f3d;
+            font-size: 180%;
+            margin-top: 2%;
+        }
+
+        .botao {
+            display: flex;
+            margin-left: 10%;
+            gap: 100px; /* Espaçamento entre os botões */
+            margin-top: 40px;
+            justify-content: left; /* Alinha os botões ao centro */
+        }
+
+        .button {
+            width: 300px; /* Largura fixa para os botões */
+            font-size: 20px;
+            padding: 15px;
+            background-color: #0d3e70;
+            color: white;
+            border: 2px solid #0d3e70;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: background-color 0.3s ease;
+            text-align: center; /* Centraliza o texto dentro do botão */
+        }
+
+        .button:hover {
+            background-color: #004080;
+            color: white;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            background-color: #0d3e70;
+            font-size: 25px;
+            color: #f2f2f2;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            z-index: 90;
+            height: 114px;
+        }
+
+        .navbar img {
+            height: 37px;
+            margin-left: 20px;
+            margin-right: 0;
+        }
+
+        .navbar-title {
+            flex-grow: 1;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 35px;
+            margin-bottom: 95px;
+            margin-left: 2px;
+            margin-right: 32px;
+        }
+
+        button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 25px;
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 101;
+        }
+
+        .logout-btn img {
+            width: 100%;
+            height: auto;
+        }
+
+        .nav-list {
+            border-radius: 8px 8px 8px 8px;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: auto;
+            background: #dedfe0; /* Cor cinza claro */
+            transform: translateX(100%); /* Inicialmente esconde o menu */
+            transition: transform 0.5s ease;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            pointer-events: none;
+            list-style: none; /* Remove os pontos */
+            text-align: center; /* Centraliza o conteúdo */
+            padding: 10px;
+        }
+
+        .nav-list li:hover { /* quando passar o mouse */
+            background-color: #003366; 
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            
+        }
+
+        .nav-list a {
+            text-decoration: none; /* Remove o sublinhado */
+            color: #fff; /* Cor escura para o texto */
+            font-size: 24px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            padding: 10px;
+            
+        }
+
+        .nav-active .nav-list {
+            transform: translateX(0); /* Mostra o menu */
+            pointer-events: all;
+        }
+
+
+        .nav-active .nav-list a {
+            opacity: 1; /* Mostra os links */
+        }
+
+        .nav-active .nav-list li {
+            animation: fadeIn 0.5s forwards;
+            padding: 10px;
+        }
+
+        .nav-active .nav-list li:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .nav-active .nav-list li:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .nav-active .nav-list li:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+       
+        .logomenu {
+            border: none;
+            background: none;
+            border-top: 3px solid #fff;
+            cursor: pointer;
+            z-index: 1;
+            position: relative;
+            margin-right: 50px;
+        }
+
+        .logomenu::before,
+        .logomenu::after {
+            content: " ";
+            display: block;
+            width: 30px;
+            height: 3px;
+            background: #fff;
+            margin-top: 5px;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-active .logomenu {
+            position: fixed;
+            top: 26px;
+            right: 1px;
+            border-top-color: transparent;
+        }
+
+        .nav-active .logomenu::before {
+            transform: rotate(135deg);
+        }
+
+        .nav-active .logomenu::after {
+            transform: rotate(-135deg);
+            top: -7px;
+        }
+
+        .sair{
+            background-color: #003366; 
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+/* Container da Tabela */
+.table-container {
+    margin-top: 5px;
+    width: 70%; /* Definindo a largura da tabela para 70% */
+    background: none;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Centraliza a tabela horizontalmente */
+    overflow-x: auto; /* Habilita a rolagem horizontal para quando a tabela for larga */
+}
+
+/* Estilos para a tabela */
+table {
+    width: 100%; /* A tabela ocupa 100% da largura do seu container */
+    border-collapse: collapse;
+    font-family: 'Poppins', sans-serif;
+    background-color: #b9cdd7;
+    color: #0d3e70;
+}
+
+/* Estilos das células da tabela */
+table th, table td {
+    font-size: 10px; /* Menor tamanho da fonte para celulares */
+    padding: 6px;
+    text-align: left;
+    border: 1px solid #0d3e70; /* Define a borda com espessura e cor */
+}
+
+/* Estilo para os cabeçalhos da tabela */
+table th {
+    padding: 10px;
+    font-size: 20px; /* Tamanho de fonte maior para cabeçalhos */
+    background-color: #0d3e70;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Media Query para telas menores */
+@media (max-width: 768px) {
+    /* Ajusta o tamanho da fonte da tabela para telas pequenas */
+    table th, table td {
+        font-size: 12px; /* Aumenta um pouco a legibilidade para dispositivos móveis */
+        padding: 10px;  /* Adiciona um pouco mais de espaçamento */
+    }
+
+    table th {
+        font-size: 16px; /* Reduz o tamanho do cabeçalho para telas pequenas */
+    }
+}
+
+/* Media Query para dispositivos móveis */
+@media (max-width: 480px) {
+    table th, table td {
+        font-size: 12px;  /* Ajusta o tamanho da fonte para um tamanho legível */
+        padding: 10px;
+    }
+
+    table th {
+        font-size: 14px; /* Ajusta a fonte do cabeçalho */
+    }
+}
+
+
+        .name-button {
+            width: 100%;
+            background-color:#b9cdd7;
+            color: #011f3d;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: left;
+        }
+
+        .options {
+            display: none;
+            gap: 10px;
+            margin-top: 10px;
+
+        }
+
+        .options button {
+            padding: 5px 10px; /* Reduz o preenchimento */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px; /* Ajuste do tamanho da fonte */
+            width: auto; /* Permite que o tamanho se ajuste ao conteúdo */
+            height: auto; /* Ajuste automático da altura */
+        }
+
+        .edit {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .delete {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .botao {
+            display: flex;
+            gap: 100px; /* Espaçamento entre os botões */
+            margin-top: 40px;
+            margin-right:auto;
+            margin-left: auto;
+            justify-content: center; /* Alinha os botões ao centro */
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 80px;
+            background-color: transparent;
+            color: #0d3e70;
+            border: 2px solid #0d3e70;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+            margin-top: 2%;
+        }
+
+        .button:hover {
+            background-color: #004080;
+            color: white;
+        }
+       
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="index.html">
+            <img src="logo.png" alt="Logo">
+        </a>
+        
+        <h1 class="navbar-title">PORTAL DO SECRETÁRIO</h1>
+        
+        <button class="logomenu"></button>
+        <ul class="nav-list">
+            <br><br>
+            <li><a href="#">Professor</a></li><br>
+            <li><a href="#">Curso</a></li><br>
+            <li><a href="#">Disciplina</a></li><br>
+            <li class="sair"><a href="secretario.html" id="logout">Sair</a></li>
+        </ul>
+    </nav>
+
+    <h2>GERENCIAR ALUNO</h2>
+
+    <div class="table-container">
+        <table id="students-table">
+            <tr>
+                <th>ALUNO</th>
+            </tr>
+            <tr>
+                <td>
+                    <button class="name-button" onclick="toggleOptions(this)">Lorrane Stefany Vekanandre</button>
+                    <div class="options">
+                        <button class="edit" onclick="editStudent(this)">Editar</button>
+                        <button class="delete" onclick="deleteStudent(this)">Excluir</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="name-button" onclick="toggleOptions(this)">Joana Teles Alves</button>
+                    <div class="options">
+                        <button class="edit" onclick="editStudent(this)">Editar</button>
+                        <button class="delete" onclick="deleteStudent(this)">Excluir</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="name-button" onclick="toggleOptions(this)">Geraldo Pereira de Ribeiro Gomes</button>
+                    <div class="options">
+                        <button class="edit" onclick="editStudent(this)">Editar</button>
+                        <button class="delete" onclick="deleteStudent(this)">Excluir</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="name-button" onclick="toggleOptions(this)">Ingryd Stephany Reis Maciel</button>
+                    <div class="options">
+                        <button class="edit" onclick="editStudent(this)">Editar</button>
+                        <button class="delete" onclick="deleteStudent(this)">Excluir</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="name-button" onclick="toggleOptions(this)">João Felipe Oliveira da Silva Rocha</button>
+                    <div class="options">
+                        <button class="edit" onclick="editStudent(this)">Editar</button>
+                        <button class="delete" onclick="deleteStudent(this)">Excluir</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="name-button" onclick="toggleOptions(this)">André Luiz Rodrigues Almeida Costa</button>
+                    <div class="options">
+                        <button class="edit" onclick="editStudent(this)">Editar</button>
+                        <button class="delete" onclick="deleteStudent(this)">Excluir</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="botao">
+        <!-- Botão SALVAR -->
+        <button class="button" onclick="saveData()">SALVAR</button>
+        <!-- Botão CADASTRAR -->
+        <button class="button" onclick="window.location.href = 'cadastrar-aluno.html'">CADASTRAR</button>
+    </div>
+
+    
+    <script>
+
+      
+        const logomenu = document.querySelector(".logomenu");
+        const nav = document.querySelector("nav");
+
+        logomenu.addEventListener("click", () => {
+            nav.classList.toggle("nav-active");
+        });
+
+        // Adicionando o evento de clique no botão "Sair"
+        const logoutBtn = document.getElementById('logout');
+        logoutBtn.addEventListener('click', function(event) {
+            event.preventDefault(); // Previne o redirecionamento imediato
+            const confirmExit = confirm('Logout com sucesso!'); // Exibe a mensagem de confirmação
+            if (confirmExit) {
+                window.location.href = 'secretario.html'; // Redireciona para a página "index.html"
+            }
+        });
+
+        function toggleOptions(button) {
+            const options = button.nextElementSibling;
+            options.style.display = options.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function deleteStudent(button) {
+            const row = button.closest('tr');
+            row.remove();
+        }
+
+        function editStudent(button) {
+            const row = button.closest('tr');
+            const nameButton = row.querySelector('.name-button');
+            const currentName = nameButton.textContent;
+            const newName = prompt('Edite o nome do aluno:', currentName);
+            if (newName) {
+                nameButton.textContent = newName;
+            }
+        }
+                
+
+        function saveData() {
+            
+            const studentsTable = document.getElementById('students-table');
+            const rows = studentsTable.getElementsByTagName('tr');
+            const students = [];
+            location.reload();  // Isso vai recarregar a página
+        
+
+            // Loop através das linhas da tabela e extrair os nomes
+            for (let i = 1; i < rows.length; i++) {
+                const nameButton = rows[i].querySelector('.name-button');
+                students.push(nameButton.textContent);
+            }
+
+            // Salvar os alunos no localStorage
+            localStorage.setItem('students', JSON.stringify(students));
+            alert('Dados salvos com sucesso!');
+                }
+    </script>
+</body>
+
+</html>

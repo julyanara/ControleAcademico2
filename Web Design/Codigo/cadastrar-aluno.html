@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Aluno</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url('fundosec.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        h1 {
+            margin-bottom: 2%;
+            text-align: center;
+            color: #f2f2f2;
+            font-size: 180%;
+            margin-top: 5%;
+        }
+
+        h2 {
+            margin-bottom: 5%;
+            text-align: center;
+            color: #011f3d;
+            font-size: 180%;
+            margin-top: 2%;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            align-items: center;
+            background-color: #0d3e70;
+            font-size: 25px;
+            color: #f2f2f2;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            z-index: 90;
+        }
+
+        .navbar img {
+            height: 40px;
+            margin-left: 20px;
+        }
+
+        .navbar-title {
+            flex-grow: 1;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 38px;
+            margin-top: 30px;
+        }
+
+        button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 25px;
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 101;
+            margin-right: 30px; /* Alinhando à direita */
+        }
+
+        .logout-btn img {
+            width: 60px;
+            height: 40px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            width: 60%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        textarea {
+            width: 100%;
+            height: 50px;
+            padding: 12px 20px;
+            box-sizing: border-box;
+            border: 2%;
+            border-color: #b9cdd7;
+            background-color: #b9cdd7;
+            color: #011f3d;
+            resize: none;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        input {
+            width: 100%;
+            height: 50px;
+            padding: 12px 20px;
+            box-sizing: border-box;
+            border: 0;
+            border-color: #b9cdd7;
+            background-color: #b9cdd7;
+            color: #011f3d;
+            resize: none;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .campo2 {
+            display: flex;
+            gap: 5%;
+            justify-content: space-between;
+        }
+
+        .botao {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .button {
+            padding: 15px 80px;
+            background-color: transparent;
+            color: #0d3e70;
+            border: 2px solid #0d3e70;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #004080;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html">
+            <img src="logo.png" alt="Logo">
+        </a>
+        
+        <h1 class="navbar-title">PORTAL DO SECRETÁRIO</h1>
+
+        <!-- Botão de sair -->
+        <a href="gerenciaraluno.html" class="logout-btn">
+            <img src="sair.png" alt="Sair">
+        </a>
+    </nav>
+
+    <!-- Formulário -->
+    <form onsubmit="return validarCampos()">
+        <h2>CADASTRAR ALUNO</h2>
+        <textarea class="textarea1" id="Nome" placeholder="Nome completo do aluno"></textarea>
+
+        <textarea class="textarea1" id="Email" placeholder="Email do aluno"></textarea><br><br>
+
+        <div class="campo2">
+            <textarea class="textarea3" id="rg" placeholder="RG"></textarea>
+            <textarea class="textarea3" id="cpf" placeholder="CPF"></textarea>
+            <textarea class="textarea3" id="Sexo" placeholder="Sexo (M, F ou NB)" maxlength="2"></textarea>
+            <input class="textarea3" type="date" id="dataNascimento" placeholder="Data de nascimento"></input>
+        </div>
+
+        <div class="botao">
+            <button class="button" type="submit">CADASTRAR</button>
+        </div>
+    </form>
+
+    <script>
+        // Máscaras para os campos
+        Inputmask("99.999.999-9").mask(document.getElementById("rg"));
+        Inputmask("999.999.999-99").mask(document.getElementById("cpf"));
+        Inputmask("99/99/9999").mask(document.getElementById("dataNascimento"));
+
+        // Função de validação de campos
+        function validarCampos() {
+            var nome = document.getElementById("Nome").value;
+            var sexo = document.getElementById("Sexo").value;
+            var email = document.getElementById("Email").value;
+            
+            // Verificar se o nome contém apenas letras
+            var nomeRegex = /^[A-Za-zÀ-ÿ\s]+$/;
+            if (!nomeRegex.test(nome)) {
+                alert("O nome deve conter apenas letras.");
+                return false;
+            }
+
+            // Verificar se o sexo é M, F ou NB
+            var sexoValido = ["M", "m", "F", "f", "NB", "nb"];
+            if (!sexoValido.includes(sexo)) {
+                alert("Sexo deve ser 'M', 'F' ou 'NB'.");
+                return false;
+            }
+
+            // Validação do email com regex
+            var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailRegex.test(email)) {
+                alert("Por favor, insira um email válido.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+</body>
+
+</html>

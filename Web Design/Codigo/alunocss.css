@@ -1,0 +1,300 @@
+/* Resetando margens, preenchimento e box-sizing para garantir consistência no layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos gerais para o corpo da página */
+body {
+    background-image: url('fundo.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Garante que o body ocupe 100% da altura da tela */
+    display: flex;
+    flex-direction: column; /* Faz o corpo usar layout em coluna */
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.imagem-fundo {
+    width: 100%; /* 100% da largura da janela */
+    height: calc(100vh - 125px); /* Ajusta a altura para ocupar o espaço restante abaixo da navbar */
+    background-image: url('fundoaluno.png');
+    background-repeat: no-repeat;
+    background-size: cover; /* Ajusta a imagem para cobrir toda a área */
+    background-position: center; /* Centraliza a imagem */
+    position: fixed;
+    left: 0;
+    z-index: 0;
+}
+
+/* Estilo dos botões */
+.name-button {
+    width: 100%;
+    background-color: #b9cdd7;
+    color: #011f3d;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: left;
+}
+
+/* Botões principais */
+.botao {
+    display: flex;
+    flex-direction: row; /* Organiza os botões em linha */
+    gap: 45px; /* Reduz o espaçamento entre os botões */
+    margin-top: 30%;
+    justify-content: center; /* Alinha os botões ao centro */
+    position: relative;
+    z-index: 1;
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 20px;
+    background-color: #003366;
+    color: #ffffff;
+    border: 2px solid #0d3e70;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #004080;
+    color: white;
+}
+
+/* Media query para telas menores */
+@media (max-width: 768px) {
+    .botao {
+        flex-direction: column; /* Organiza os botões em coluna */
+        gap: 10px; /* Ajusta o espaçamento entre os botões */
+        margin-top: 20%; /* Ajusta a posição dos botões em telas menores */
+    }
+
+    .button {
+        font-size: 1em; /* Reduz o tamanho da fonte dos botões */
+        padding: 10px 15px; /* Ajusta o tamanho do botão */
+    }
+}
+
+/* ============================ NAVBAR ============================ */
+/* Estilização da barra de navegação */
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #0d3e70;
+    font-size: 25px;
+    color: #f2f2f2;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 90;
+    height: 125px;
+}
+
+.navbar img {
+    height: 40px;
+    margin-left: 20px;
+    margin-right: 0;
+}
+
+.navbar-title {
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 39px;
+    margin-bottom: 8px;
+    margin-left: 2px;
+    margin-right: 32px;
+}
+
+button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 101;
+}
+
+.logout-btn img {
+    width: 100%;
+    height: auto;
+}
+
+/* Lista de navegação */
+.nav-list {
+    border-radius: 8px 8px 8px 8px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: auto;
+    background: #dedfe0; /* Cor cinza claro */
+    transform: translateX(100%); /* Inicialmente esconde o menu */
+    transition: transform 0.5s ease;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    pointer-events: none;
+    list-style: none; /* Remove os pontos */
+    text-align: center; /* Centraliza o conteúdo */
+    padding: 10px;
+}
+
+.nav-list li:hover { /* quando passar o mouse */
+    background-color: #003366; 
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.nav-list a {
+    text-decoration: none; /* Remove o sublinhado */
+    color: #fff; /* Cor escura para o texto */
+    font-size: 24px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    padding: 10px;
+}
+
+/* Exibe a lista de navegação quando o menu está ativo */
+.nav-active .nav-list {
+    transform: translateX(0); /* Mostra o menu */
+    pointer-events: all;
+}
+
+.nav-active .nav-list a {
+    opacity: 1; /* Mostra os links */
+}
+
+.nav-active .nav-list li {
+    animation: fadeIn 0.5s forwards;
+    padding: 10px;
+}
+
+.nav-active .nav-list li:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.nav-active .nav-list li:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.nav-active .nav-list li:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Estilos para o botão de hambúrguer */
+.logomenu {
+    border: none;
+    background: none;
+    border-top: 3px solid #fff;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+    margin-right: 50px;
+}
+
+.logomenu::before,
+.logomenu::after {
+    content: " ";
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: #fff;
+    margin-top: 5px;
+    position: relative;
+    transition: 0.3s;
+}
+
+.nav-active .logomenu {
+    position: fixed;
+    top: 26px;
+    right: 1px;
+    border-top-color: transparent;
+}
+
+.nav-active .logomenu::before {
+    transform: rotate(135deg);
+}
+
+.nav-active .logomenu::after {
+    transform: rotate(-135deg);
+    top: -7px;
+}
+
+/* Estilo do botão de sair */
+.sair {
+    background-color: #003366; 
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 1rem; /* Tamanho de fonte ajustado */
+}
+
+/* Media query para telas menores */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Organiza a navbar em coluna */
+        padding: 10px;
+        text-align: center;
+        height: auto; /* Ajusta a altura da navbar */
+    }
+
+    .navbar-title {
+        font-size: 1.8rem; /* Ajusta o tamanho da fonte */
+    }
+
+    .logomenu {
+        margin-right: 0; /* Remove a margem direita */
+    }
+
+    .navbar img {
+        height: 30px; /* Ajusta o tamanho da imagem na navbar */
+    }
+
+    .nav-list {
+        width: 100%; /* Ajusta a largura do menu para 100% */
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+    }
+
+    .nav-list a {
+        font-size: 18px; /* Ajusta o tamanho do texto */
+    }
+
+    .sair {
+        font-size: 0.9rem; /* Ajusta o tamanho da fonte em telas menores */
+        padding: 8px; /* Ajusta o padding */
+    }
+}

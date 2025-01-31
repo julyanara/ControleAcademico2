@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Aluno - Notas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="notascss.css">
+
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html">
+            <img src="logo.png" alt="Logo">
+        </a>
+        
+        <h1 class="navbar-title">PORTAL DO ALUNO</h1>
+        
+        <button class="logomenu"></button>
+        <ul class="nav-list">
+            <br><br>
+            <li><a href="historico.html">Histórico</a></li><br>
+            <li><a href="inscricao-projeto.html">Projeto</a></li><br>
+            <li class="sair"><a href="aluno.html" id="logout">Sair</a></li>
+        </ul>
+    </nav>
+
+    <h1 class="titulo">CONSULTE SUAS NOTAS:</h1>
+
+    <div class="imagem-fundo"></div>
+
+    <div class="quadrado">
+       <!-- <img src="mochila.png" alt="Mochila"> -->
+        
+        <!-- Colocando o select dentro do quadrado -->
+        <div class="select">
+            <div class="label">Selecione a matéria:</div>
+            <form>
+                <select id="materias" name="materia" onchange="mostrarTabela()">
+                    <option value="selecione"> </option>
+                    <option value="portugues">Português</option>
+                    <option value="matematica">Matemática</option>
+                    <option value="historia">História</option>
+                    <option value="geografia">Geografia</option>
+                    <option value="biologia">Biologia</option>
+                </select>
+            </form>
+            <div id="tabela-container"></div>
+        </div>
+        
+        <!-- Aqui a tabela vai ser inserida dinamicamente -->
+        
+    </div>
+
+    <div class="container-voltar">
+        <button type="submit" class="button" onclick="window.location.href = 'aluno.html'">VOLTAR</button>
+    </div>
+
+    <script>
+        function mostrarTabela() {
+            // Notas organizadas por matéria
+            const notasPorMateria = {
+                portugues: [
+                    ["8.0", "7.5", "9.0"], // Prova
+                    ["7.0", "8.5", "8.0"], // Trabalho
+                    ["6.5", "9.0", "7.0"], // Seminário
+                    ["8.5", "7.0", "9.5"], // Atitudinal
+                    ["9.0", "8.0", "7.5"], // Recuperação
+                ],
+                matematica: [
+                    ["7.5", "8.0", "6.0"], // Prova
+                    ["8.5", "7.0", "8.5"], // Trabalho
+                    ["9.0", "8.5", "9.5"], // Seminário
+                    ["7.0", "7.5", "8.0"], // Atitudinal
+                    ["6.5", "9.0", "7.5"], // Recuperação
+                ],
+                historia: [
+                    ["7.0", "7.5", "8.0"], // Prova
+                    ["8.5", "9.0", "9.5"], // Trabalho
+                    ["7.5", "8.0", "6.5"], // Seminário
+                    ["9.0", "8.5", "7.0"], // Atitudinal
+                    ["8.0", "7.5", "8.5"], // Recuperação
+                ],
+                geografia: [
+                    ["8.0", "8.5", "7.5"], // Prova
+                    ["9.0", "8.0", "8.5"], // Trabalho
+                    ["7.5", "9.0", "8.0"], // Seminário
+                    ["8.5", "8.5", "9.0"], // Atitudinal
+                    ["7.0", "8.0", "9.5"], // Recuperação
+                ],
+                biologia: [
+                    ["8.5", "9.0", "8.0"], // Prova
+                    ["7.5", "8.5", "9.0"], // Trabalho
+                    ["9.0", "8.0", "8.5"], // Seminário
+                    ["8.0", "9.0", "7.5"], // Atitudinal
+                    ["8.5", "7.5", "9.0"], // Recuperação
+                ]
+            };
+    
+            // Obtém a matéria selecionada
+            const materia = document.getElementById("materias").value;
+            const tabelaContainer = document.getElementById("tabela-container");
+    
+            // Limpa qualquer tabela existente
+            tabelaContainer.innerHTML = " ";
+    
+            // Se a matéria não tiver notas ou for "selecione", não exibe tabela
+            if (materia === "selecione" || !notasPorMateria[materia]) {
+                return;
+            }
+    
+            // Cria a tabela
+            const tabela = document.createElement("table");
+            tabela.classList.add("tabela");
+    
+            // Adiciona o cabeçalho
+            const thead = document.createElement("thead");
+            const headerRow = document.createElement("tr");
+            const headers = ["Notas", "1°Trim", "2°Trim", "3°Trim"];
+            headers.forEach((headerText) => {
+                const th = document.createElement("th");
+                th.innerText = headerText;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            tabela.appendChild(thead);
+    
+            // Adiciona o corpo da tabela
+            const tbody = document.createElement("tbody");
+            const notas = notasPorMateria[materia]; // Obtém as notas da matéria selecionada
+    
+            // Títulos das linhas
+            const titulosLinhas = ["Prova", "Trabalho", "Seminário", "Atitudinal", "Recuperação"];
+    
+            notas.forEach((linhaNotas, index) => {
+                const row = document.createElement("tr");
+    
+                // Adiciona o título da linha (nota)
+                const notaCell = document.createElement("td");
+                notaCell.innerText = titulosLinhas[index];
+                row.appendChild(notaCell);
+    
+                // Adiciona as notas para cada trimestre
+                linhaNotas.forEach((nota) => {
+                    const notaCell = document.createElement("td");
+                    notaCell.innerText = nota;
+                    row.appendChild(notaCell);
+                });
+    
+                tbody.appendChild(row);
+            });
+    
+            tabela.appendChild(tbody);
+    
+            // Adiciona a tabela ao container
+            tabelaContainer.appendChild(tabela);
+        }
+    
+        const logomenu = document.querySelector(".logomenu");
+        const nav = document.querySelector("nav");
+
+        logomenu.addEventListener("click", () => {
+            nav.classList.toggle("nav-active");
+        });
+
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('nav-active');
+        }
+
+        function toggleOptions(button) {
+            const options = button.nextElementSibling;
+            options.style.display = options.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function deleteStudent(button) {
+            const row = button.closest('tr');
+            row.remove();
+        }
+
+        function editStudent(button) {
+            const row = button.closest('tr');
+            const nameButton = row.querySelector('.name-button');
+            const currentName = nameButton.textContent;
+            const newName = prompt('Edite o nome do aluno:', currentName);
+            if (newName) {
+                nameButton.textContent = newName;
+            }
+        }
+                // Captura o botão de logout
+        const sair = document.getElementById('logout');
+
+        // Adiciona o evento de clique ao botão de logout
+        sair.addEventListener('click', function(event) {
+            event.preventDefault(); // Previne o redirecionamento imediato
+            const confirmExit = confirm('Logout com sucesso!'); // Exibe a mensagem de confirmação
+            if (confirmExit) {
+                window.location.href = 'aluno.html'; 
+            }
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,391 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('fundo.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+select {
+    background-color: #c3d3dc;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    margin-top: 5px;
+    border: 2px solid #c3d3dc;
+    border-radius: 5px;
+    width: 100%; /* Ajuste o select para ocupar toda a largura */
+    min-width: 60%;
+    height: 40px; /* Altura ajustada */
+    padding: 5px 10px;
+    box-sizing: border-box; /* Inclui o padding no cálculo da largura */
+}
+
+/* NAVBAR */
+.navbar {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    background-color: #0d3e70;
+    font-size: 25px;
+    color: #f2f2f2;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 90;
+}
+
+.navbar img {
+    height: 40px;
+    margin-left: 20px;
+    margin-right: 0;
+}
+
+.navbar-title {
+    color: #f2f2f2;
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 39px;
+    margin-top: 34px;
+    margin-left: 4px;
+    margin-right: 32px;
+    margin-bottom: 1.5%;
+}
+
+button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 101;
+}
+
+.logout-btn img {
+    width: 100%;
+    height: auto;
+}
+
+.nav-list {
+    border-radius: 8px 8px 8px 8px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: auto;
+    background: #dedfe0;
+    transform: translateX(100%);
+    transition: transform 0.5s ease;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    pointer-events: none;
+    list-style: none;
+    text-align: center;
+    padding: 10px;
+}
+
+.nav-list li:hover {
+    background-color: #003366;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 24px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    padding: 10px;
+}
+
+.nav-active .nav-list {
+    transform: translateX(0);
+    pointer-events: all;
+}
+
+.nav-active .nav-list a {
+    opacity: 1;
+}
+
+.nav-active .nav-list li {
+    animation: fadeIn 0.5s forwards;
+    padding: 10px;
+}
+
+.nav-active .nav-list li:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.nav-active .nav-list li:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.nav-active .nav-list li:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.logomenu {
+    border: none;
+    background: none;
+    border-top: 3px solid #fff;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+    margin-right: 50px;
+}
+
+.logomenu::before,
+.logomenu::after {
+    content: " ";
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: #fff;
+    margin-top: 5px;
+    position: relative;
+    transition: 0.3s;
+}
+
+.nav-active .logomenu {
+    position: fixed;
+    top: 26px;
+    right: 1px;
+    border-top-color: transparent;
+}
+
+.nav-active .logomenu::before {
+    transform: rotate(135deg);
+}
+
+.nav-active .logomenu::after {
+    transform: rotate(-135deg);
+    top: -7px;
+}
+
+.sair {
+    background-color: #003366;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.button {
+    justify-content: center;
+    display: inline-block;
+    padding: 15px 80px;
+    background-color: transparent;
+    color: #0d3e70;
+    border: 2px solid #0d3e70;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #004080;
+    color: white;
+}
+
+/* TÍTULO PRINCIPAL */
+.titulo {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: #0d3e70;
+    margin-top: 4%;
+    margin-bottom: 2%;
+}
+
+.quadrado {
+    height: auto;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.select {
+    position: relative; /* Garantir que a posição do select seja controlada dentro do contêiner */
+    margin-bottom: 20px; /* Espaço abaixo do select */
+    width: 40%;
+    padding: 10px;
+}
+
+.select select {
+    background-color: #c3d3dc;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    margin-top: 5px;
+    border: 2px solid #c3d3dc;
+    border-radius: 5px;
+    height: 40px; /* Altura ajustada */
+    padding: 5px 10px;
+    box-sizing: border-box; /* Inclui o padding no cálculo da largura */
+}
+
+.container-voltar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+    margin-bottom: 10px;
+}
+
+.button {
+    padding: 15px 40px;
+    background-color: transparent;
+    color: #0d3e70;
+    border: 2px solid #0d3e70;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #004080;
+    color: white;
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+    .navbar-title {
+        font-size: 22px;
+    }
+
+    .nav-list {
+        display: none;
+    }
+
+    .logomenu {
+        display: block;
+    }
+
+    .nav-active .nav-list {
+        display: flex;
+    }
+
+    .titulo {
+        font-size: 28px;
+    }
+
+    .quadrado {
+        width: 90%;
+        padding: 5%;
+    }
+
+    .button {
+        font-size: 1em;
+        padding: 10px 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-title {
+        font-size: 18px;
+    }
+
+    .titulo {
+        font-size: 22px;
+    }
+
+    .quadrado {
+        width: 90%;
+        padding: 5%;
+    }
+
+    .button {
+        font-size: 0.9em;
+        padding: 10px 30px;
+    }
+
+    .container-voltar {
+        margin-top: 20px;
+    }
+}
+
+.tabela {
+    font-family: 'Poppins', sans-serif; /* Mudando a fonte */
+    text-align: center; /* Alinha o conteúdo da tabela à esquerda */
+    width: 100%; /* A tabela deve ocupar 100% da largura disponível */
+    border-collapse: collapse; /* Garante que as bordas sejam colapsadas */
+    align-items: center;
+    justify-content: center;
+    right: 900px;
+}
+
+/* Estilos para as células da tabela */
+.tabela th, .tabela td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left; /* Alinha as células à esquerda */
+}
+
+/* Estilo para o cabeçalho da tabela */
+.tabela th {
+    background-color: #0d3e70;
+    color: #fff;
+
+}
+
+/* Estilo para as células de dados da tabela */
+.tabela td {
+    background-color: #f4f4f4;
+    color: black;
+    align-items: center;
+}
+
+/* Ajuste no contêiner da tabela */
+#tabela-container {
+  margin-top: 5%;
+  /*margin-left: 50%;*/
+  width: 100%; /* Ajuste a largura conforme necessário */
+  justify-content: center;
+   
+}
+
+label {
+font-size: 25px;
+margin-top: 0; 
+font-weight: bold;
+width: 100%;
+position:relative;
+z-index: 2;
+}

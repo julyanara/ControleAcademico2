@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Aluno - Histórico</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="historico.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html">
+            <img src="logo.png" alt="Logo">
+        </a>
+        
+        <h1 class="navbar-title">PORTAL DO ALUNO</h1>
+        
+        <button class="logomenu"></button>
+        <ul class="nav-list">
+            <br><br>
+            <li><a href="inscricao-projeto.html">Projetos</a></li><br>
+            <li><a href="notasaluno.html">Notas</a></li><br>
+            <li class="sair"><a href="aluno.html" id="logout">Sair</a></li>
+        </ul>
+    </nav>
+
+    <h1 class="titulo">CONSULTE SEU HISTÓRICO:</h1>
+
+    <!-- Imagem Centralizada -->
+    <div class="imagem-historico">
+        <img src="hist.png" alt="Histórico">
+    </div>
+    <br><br><br>
+
+    <div class="container-voltar">
+        <button type="submit" class="button" onclick="window.location.href = 'aluno.html'">VOLTAR</button>
+    </div>
+    <br><br><br>
+
+    <script>
+       const logomenu = document.querySelector(".logomenu");
+        const nav = document.querySelector("nav");
+
+        logomenu.addEventListener("click", () => {
+            nav.classList.toggle("nav-active");
+        });
+
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('nav-active');
+        }
+
+        function toggleOptions(button) {
+            const options = button.nextElementSibling;
+            options.style.display = options.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function deleteStudent(button) {
+            const row = button.closest('tr');
+            row.remove();
+        }
+
+        function editStudent(button) {
+            const row = button.closest('tr');
+            const nameButton = row.querySelector('.name-button');
+            const currentName = nameButton.textContent;
+            const newName = prompt('Edite o nome do aluno:', currentName);
+            if (newName) {
+                nameButton.textContent = newName;
+            }
+        }
+                // Captura o botão de logout
+        const sair = document.getElementById('logout');
+
+        // Adiciona o evento de clique ao botão de logout
+        sair.addEventListener('click', function(event) {
+            event.preventDefault(); // Previne o redirecionamento imediato
+            const confirmExit = confirm('Logout com sucesso!'); // Exibe a mensagem de confirmação
+            if (confirmExit) {
+                window.location.href = 'aluno.html'; 
+            }
+        });
+    </script>
+</body>
+</html>
